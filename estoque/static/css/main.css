@@ -1,0 +1,15 @@
+body{
+    background-color: #f0f0f0;
+}
+
+div#menu-nav {
+    margin-bottom: 2%;
+}
+
+a.btn-nav {
+    padding-left: 10px;
+}
+
+div.messages {
+    margin-left: 7.5%;
+}

@@ -1,0 +1,37 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">PRODUTO</th>
+                <th scope="col">QUANTIDADE EM ESTOQUE</th>
+                <th scope="col">QUANTIDADE MÍNIMA</th>
+                <th scope="col">EDITAR</th>
+                <th scope="col">REMOVER</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <th scope="row">{{ produto.pk }}</th>
+                <th>{{ produto.produto }}</th>
+                <th>{{ produto.quantidade_em_estoque }}</th>
+                <th>{{ produto.estoque_minimo }}</th>
+                {% if user.is_authenticated %}
+                    <th><a href="{% url 'modificar_produto' pk=produto.pk %}">Editar</a></th>
+                    <th><a href="{% url 'remover_produto' pk=produto.pk %}">Remover</a></th>    
+                {% else %}
+                    <th>Sem permissão</th>
+                    <th>Sem permissão</th>
+                {% endif %}
+                
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+<html>
+    <head>
+        {% load static %}
+        <title>Controle de estoque</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        {% block head_content %}{% endblock %}
+    </head>
+    <body>
+        <div class="container" id="menu-nav">
+            <div class="btn-group" role="group" arial-label="Botões para navegar na aplicação">
+                <a class="btn-nav" href="{% url 'index' %}"><button type="button" class="btn btn-primary btn-md nav-app">Todos produtos</button></a>
+                <a class="btn-nav" href="{% url 'produtos_em_falta' %}"><button type="button" class="btn btn-primary btn-md nav-app">Produtos em falta</button></a>
+                {% if user.is_authenticated %}
+                    <a class="btn-nav" href="{% url 'adicionar_produto' %}"><button type="button" class="btn btn-primary btn-md nav-app">Novo produto</button></a>
+                {% endif %}
+            </div>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                    <div class="messages">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
